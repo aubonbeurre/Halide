@@ -170,8 +170,7 @@ const std::map<std::string, Target::OS> os_name_map = {
     {"android", Target::Android},
     {"ios", Target::IOS},
     {"nacl", Target::NaCl},
-    {"HexagonStandalone", Target::HexagonStandalone},
-    {"HexagonQurt", Target::HexagonQurt},
+    {"qurt", Target::Qurt},
 };
 
 bool lookup_os(const std::string &tok, Target::OS &result) {

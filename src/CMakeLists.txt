@@ -60,6 +60,7 @@ set(RUNTIME_CPP
   posix_thread_pool
   profiler
   profiler_inlined
+  qurt_thread_pool
   renderscript
   runtime_api
   ssp

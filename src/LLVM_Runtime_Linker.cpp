@@ -138,6 +138,11 @@ DECLARE_NO_INITMOD(metal)
 DECLARE_NO_INITMOD(metal_objc_arm)
 DECLARE_NO_INITMOD(metal_objc_x86)
 #endif
+#ifdef WITH_HEXAGON
+DECLARE_CPP_INITMOD(qurt_thread_pool)
+#else
+DECLARE_NO_INITMOD(qurt_thread_pool)
+#endif
 
 #ifdef WITH_ARM
 DECLARE_LL_INITMOD(arm)
@@ -676,10 +681,11 @@ std::unique_ptr<llvm::Module> get_initial_module_for_target(Target t, llvm::LLVM
                 modules.push_back(get_initmod_nacl_host_cpu_count(c, bits_64, debug));
                 modules.push_back(get_initmod_posix_thread_pool(c, bits_64, debug));
                 modules.push_back(get_initmod_ssp(c, bits_64, debug));
-            } else if (t.os == Target::HexagonStandalone) {
+            } else if (t.os == Target::Qurt) {
+                modules.push_back(get_initmod_posix_clock(c, bits_64, debug));
                 modules.push_back(get_initmod_posix_io(c, bits_64, debug));
-                // TODO: Replace fake thread pool with a real implementation.
-                modules.push_back(get_initmod_fake_thread_pool(c, bits_64, debug));
+                modules.push_back(get_initmod_posix_get_symbol(c, bits_64, debug));
+                modules.push_back(get_initmod_qurt_thread_pool(c, bits_64, debug));
             }
         }
 

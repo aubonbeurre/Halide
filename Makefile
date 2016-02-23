@@ -538,6 +538,7 @@ RUNTIME_CPP_COMPONENTS = \
   posix_thread_pool \
   profiler \
   profiler_inlined \
+  qurt_thread_pool \
   renderscript \
   runtime_api \
   ssp \
